@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dataset Created Successfully - Rivendell</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e1eae",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121220",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #d1d1e0;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header Component -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 md:px-20 lg:px-40">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">database</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Rivendell</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-primary/20 rounded-full size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-10 px-4 md:px-0">
+<div class="w-full max-w-[800px] space-y-8">
+<!-- Success Message Header -->
+<div class="text-center space-y-3">
+<div class="inline-flex items-center justify-center size-16 bg-green-100 dark:bg-green-900/30 rounded-full mb-2">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400 text-4xl">check_circle</span>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Dataset Created Successfully</h1>
+<p class="text-slate-500 dark:text-slate-400">Your new dataset is ready to receive logs. Save your keys below.</p>
+</div>
+<!-- Warning Alert Box -->
+<div class="flex items-start gap-4 rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-900/50 p-5">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-500">warning</span>
+<div class="flex flex-col gap-1 flex-1">
+<p class="text-amber-900 dark:text-amber-200 text-sm font-bold leading-tight">Important: Admin Key Security</p>
+<p class="text-amber-800 dark:text-amber-300 text-sm font-normal">The Admin Key will not be shown again. Please store it securely in a password manager. If lost, you must rotate it in the dashboard.</p>
+</div>
+</div>
+<!-- Credentials Card -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<h3 class="font-semibold text-slate-700 dark:text-slate-200">Dataset Credentials</h3>
+</div>
+<div class="p-6 space-y-6">
+<!-- Dataset ID -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">fingerprint</span>
+</div>
+<div>
+<p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Dataset ID</p>
+<p class="font-mono text-primary font-medium">ds_29XQ8A1</p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded transition-colors">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+                            Copy
+                        </button>
+</div>
+<!-- Ingest Key -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">input</span>
+</div>
+<div>
+<p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Ingest Key</p>
+<p class="font-mono text-slate-700 dark:text-slate-300">ing_xxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxx</p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded transition-colors">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+                            Copy
+                        </button>
+</div>
+<!-- Admin Key -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+</div>
+<div>
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Admin Key</p>
+<p class="font-mono text-slate-700 dark:text-slate-300">adm_xxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxx</p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded transition-colors">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+                            Copy
+                        </button>
+</div>
+</div>
+</div>
+<!-- Quick Start Section -->
+<div class="space-y-4">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Quick Start</h3>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+<button class="px-6 py-3 text-sm font-medium text-primary border-b-2 border-primary bg-white dark:bg-slate-900">cURL</button>
+<button class="px-6 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">JavaScript</button>
+</div>
+<!-- Code Block -->
+<div class="p-0 relative">
+<div class="code-block p-6 font-mono text-sm overflow-x-auto">
+<pre><code>curl -X POST https://api.usagelog.io/v1/ingest \
+  -H "Content-Type: application/json" \
+  -H "X-Ingest-Key: ing_xxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxx" \
+  -d '{
+    "dataset_id": "ds_29XQ8A1",
+    "event": "user_signup",
+    "metadata": {
+      "user_id": "usr_123",
+      "plan": "enterprise"
+    }
+  }'</code></pre>
+</div>
+<button class="absolute top-4 right-4 p-2 bg-slate-700 hover:bg-slate-600 text-white rounded transition-colors" title="Copy code">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Navigation Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+<button class="w-full sm:w-auto min-w-[200px] h-11 flex items-center justify-center rounded-lg bg-primary text-white font-semibold hover:bg-primary/90 transition-colors">
+                    Go to Dashboard
+                </button>
+<button class="w-full sm:w-auto min-w-[200px] h-11 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                    Create Another Dataset
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="py-10 text-center text-slate-400 text-sm">
+<p>© 2024 Rivendell. All rights reserved.</p>
+</footer>
+</div>
+</body></html>

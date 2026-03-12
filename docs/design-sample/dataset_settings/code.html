@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e1eae",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121220",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Dataset Settings - Rivendell</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 lg:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">database</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Rivendell</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800">
+<div class="text-slate-500 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 px-4 pl-2 text-sm" placeholder="Search datasets..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<button class="flex items-center justify-center rounded-lg size-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+<div class="bg-slate-200 dark:bg-slate-700 rounded-full size-10 overflow-hidden border border-slate-300 dark:border-slate-600">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="User avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3-Q3B5TMBi43U6MEGcsKcNWOJBPbxC0cczs_s-19opHSF3OKp1y3ej7Pw0rYiMHDPXdqqjRGiPkVF6oVXKLAlkaFkSCxUvRZ3yjng_bNppbfYv0ABeL3V0wUUsbYNd6tAMiHPt7F_-nFKgEFEc1BnbR0LBeVHpWUukbN9-epCx7w-JI7vzQmql9XP-k4m_5VxttVMlI9KX3le3i_K5pFXAn53E_hSeN4v9s09M0hp_afbyKDTl1H9gRyaUdouDyZpro-LVI_qlEE"/>
+</div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1024px] flex-1 px-4 lg:px-10 gap-8">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col gap-2">
+<nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100 font-medium">Settings</span>
+</nav>
+<div class="flex flex-wrap justify-between items-end gap-4 mt-2">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight">Dataset Settings</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Manage your dataset configurations, column mappings, and security credentials.</p>
+</div>
+</div>
+</div>
+<!-- Section 1: Dataset Info -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800">
+<h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Dataset Information</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Basic identification for this dataset.</p>
+</div>
+<div class="p-6 space-y-4 max-w-2xl">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Dataset Name</label>
+<input class="form-input rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary w-full" type="text" value="Production Log Cluster A"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Description</label>
+<textarea class="form-input rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary w-full h-24" placeholder="Briefly describe what data this set contains...">High-frequency operational logs from primary AWS cluster.</textarea>
+</div>
+<div class="pt-2">
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity">Save Info</button>
+</div>
+</div>
+</section>
+<!-- Section 2: Column Aliases -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<div>
+<h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Column Aliases</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Map generic dimensions and metrics to readable display names.</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity">Update Aliases</button>
+</div>
+<div class="p-6">
+<div class="mb-6">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Dimension Aliases</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Dim items -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">dim1</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" type="text" value="User ID"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">dim2</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" type="text" value="Region"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">dim3</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" type="text" value="Service Type"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">dim4</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" placeholder="Set Alias..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">dim5</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" placeholder="Set Alias..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">dim6</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" placeholder="Set Alias..." type="text"/>
+</div>
+<!-- Add more up to 10 as needed -->
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Metric Aliases</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">metric1</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" type="text" value="CPU Usage %"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">metric2</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" type="text" value="Memory GB"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-400 w-12 text-right">metric3</span>
+<input class="form-input text-sm rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 w-full" type="text" value="Request Count"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Key Management -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800">
+<h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Key Management</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Security credentials for ingestion and management APIs.</p>
+</div>
+<div class="p-6 space-y-6">
+<!-- Ingest Key -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-slate-50 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-900 dark:text-slate-100">Ingest Key</span>
+<span class="px-2 py-0.5 text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full uppercase">Active</span>
+</div>
+<div class="flex items-center gap-2 font-mono text-sm text-slate-500">
+<span>ingest_••••••••••••••••••••3a9d</span>
+<button class="material-symbols-outlined text-base text-slate-400 hover:text-primary">content_copy</button>
+</div>
+<span class="text-xs text-slate-400">Last used: 2 minutes ago</span>
+</div>
+<button class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors group">
+<span class="material-symbols-outlined text-sm group-hover:rotate-180 transition-transform duration-500">refresh</span>
+                                    Rotate Key
+                                </button>
+</div>
+<!-- Admin Key -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-slate-50 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-900 dark:text-slate-100">Admin Key</span>
+<span class="px-2 py-0.5 text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 rounded-full uppercase">Restricted</span>
+</div>
+<div class="flex items-center gap-2 font-mono text-sm text-slate-500">
+<span>admin_••••••••••••••••••••7f22</span>
+<button class="material-symbols-outlined text-base text-slate-400 hover:text-primary">content_copy</button>
+</div>
+<span class="text-xs text-slate-400">Last used: Yesterday, 4:12 PM</span>
+</div>
+<button class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors group">
+<span class="material-symbols-outlined text-sm group-hover:rotate-180 transition-transform duration-500">refresh</span>
+                                    Rotate Key
+                                </button>
+</div>
+<!-- Warning Note -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-xl">info</span>
+<p class="text-xs text-primary leading-relaxed">
+                                    Rotating keys will immediately invalidate the current key. Any services using the old key will start failing authentication. Ensure you have the new key ready to deploy.
+                                </p>
+</div>
+</div>
+</section>
+<!-- Section 4: Danger Zone -->
+<section class="border border-red-200 dark:border-red-900/50 bg-red-50/50 dark:bg-red-950/20 rounded-xl overflow-hidden mb-12">
+<div class="p-6 border-b border-red-200 dark:border-red-900/50">
+<h2 class="text-lg font-semibold text-red-700 dark:text-red-400">Danger Zone</h2>
+<p class="text-sm text-red-600/80 dark:text-red-400/80">Irreversible actions that affect your data availability.</p>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-slate-100">Archive Dataset</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Move dataset to cold storage. It will be read-only and hidden from standard dashboards.</p>
+</div>
+<button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors">Archive Dataset</button>
+</div>
+<div class="border-t border-red-200 dark:border-red-900/30 pt-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-slate-100">Delete All Data</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Permanently remove all historical logs for this dataset. This action cannot be undone.</p>
+</div>
+<button class="border border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all">Delete Data</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="border-t border-slate-200 dark:border-slate-800 py-6 text-center">
+<p class="text-xs text-slate-400 dark:text-slate-500">© 2024 Rivendell. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</body></html>

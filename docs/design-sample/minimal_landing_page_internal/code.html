@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#1e1eae",
+                "background-light": "#f6f6f8",
+                "background-dark": "#121220",
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<title>Rivendell - Tool Usage Analytics</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen w-full flex-col">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-10 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">analytics</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Rivendell</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Docs</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Help</a>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-900 dark:text-white font-bold text-sm">
+<span class="material-symbols-outlined mr-2 text-xl">terminal</span>
+                    API Access
+                </button>
+</nav>
+</div>
+</header>
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="px-6 py-16 md:py-24 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-4">
+<span class="text-primary font-bold tracking-wider uppercase text-xs">Internal Utility</span>
+<h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">
+                            Easily collect and analyze tool usage logs.
+                        </h1>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-lg">
+                            No account required. Use dataset_id and keys for instant access. Integrate in minutes.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="flex items-center justify-center rounded-xl h-14 px-8 bg-primary text-white text-base font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                            Create New Dataset
+                        </button>
+<button class="flex items-center justify-center rounded-xl h-14 px-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-base font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+                            Open Existing Dataset
+                        </button>
+</div>
+<div class="flex items-center gap-6 pt-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-200" data-alt="Avatar of user 1"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-300" data-alt="Avatar of user 2"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-400" data-alt="Avatar of user 3"></div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Used by <span class="font-bold text-slate-900 dark:text-slate-200">500+</span> internal projects</p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-indigo-400 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-2 shadow-2xl overflow-hidden aspect-video">
+<div class="w-full h-full bg-slate-50 dark:bg-slate-950 rounded-xl flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Dashboard preview showing tool usage metrics and data charts" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCWicotZn1p7JxaCgZSVTaH4B7fX6JVvHU2EozhBy28WYXlgyINkmAptCpYrxcYfU0R0TrDyrpZR5F2hkAKIgrAkyDCN2DjU1OKu3kpaCKSHwCiw3OMug4pwex4Iq7y5uUBEtIQp7-ldKUksd9YGymTax2dH_xiTR0J9QphjP5kzjI0Upb_orgIAXMR1TvDDGByQRGGkQQXyiU2Fopoh0cbXbbrvkZNKluRxG2hbsD4UUVCXueee-yuFwgi8DBu2zdcbWQ3C6uUD4');"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="bg-white dark:bg-slate-900/50 py-20 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="mb-12">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">How it works</h2>
+<p class="text-slate-500 dark:text-slate-400">Set up your logging pipeline in three simple steps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">add_box</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Create Dataset</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">Generate your unique dataset_id and secure access keys in seconds. Internal authentication applies.</p>
+</div>
+</div>
+<div class="flex flex-col gap-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">api</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Ingest via API</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">Send logs from any tool using our simple REST API or SDKs. We handle the scaling and storage for you.</p>
+</div>
+</div>
+<div class="flex flex-col gap-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">download</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">View &amp; Export</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">Analyze your data in real-time or export to CSV/JSON formats for further analysis in your favorite tools.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-10 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3 opacity-60">
+<div class="bg-slate-800 dark:bg-slate-700 p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">analytics</span>
+</div>
+<span class="text-lg font-bold">Rivendell</span>
+</div>
+<div class="flex gap-8 text-sm text-slate-500 dark:text-slate-400 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Status</a>
+<a class="hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<p class="text-sm text-slate-400 dark:text-slate-600">
+                © 2024 Rivendell. Internal Tool.
+            </p>
+</div>
+</footer>
+</div>
+</body></html>

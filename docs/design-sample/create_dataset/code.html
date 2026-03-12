@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1e1eae",
+              "background-light": "#f6f6f8",
+              "background-dark": "#121220",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>Create Dataset - Rivendell</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">database</span>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Rivendell</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Abstract circular user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU6-hX53872DABqxbcBuDE3rpiIZ3oPS_vuokyhDjAPEgpFYDWZpmQqohHHa1SsRT4lCIXK6JgoyZ-EvRyljVQokZ7oW18XZNsv5QexWZ1P-VvjD9ZAhQx0sJHVzIA-2ZppUAH7wOXIOvTc1toO_4cq99Nj-PJi9Y1R7jLlvW1SujIC4nkxLSPHPm7lzN08PEHkmSP6APDRThqsNpgma0seNSRzEg2hZl_LLa7EjI2osRgvuLOrUG8ZcUjkCErs2dhuiy5O6ChaOs"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-sm font-medium mb-8 text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100">Create Dataset</span>
+</nav>
+<!-- Page Header -->
+<div class="mb-10">
+<h2 class="text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Create Dataset</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-400">Configure your new data collection by filling in the details below.</p>
+</div>
+<!-- Form Container -->
+<form class="space-y-8">
+<!-- Basic Details Section -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Dataset Name (Required)</label>
+<input class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="e.g. system_logs_v1" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Description (Optional)</label>
+<textarea class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none" placeholder="Briefly describe the purpose of this dataset" rows="4"></textarea>
+</div>
+</div>
+</section>
+<!-- Advanced Settings Accordion -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<details class="group">
+<summary class="flex items-center justify-between p-6 cursor-pointer list-none select-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">settings</span>
+<span class="text-base font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider">Advanced Settings</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+<!-- Dimension Aliases -->
+<div class="mb-8">
+<h4 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">label</span> Dimension Aliases
+                            </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-3">
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 1" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 2" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 3" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 4" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 5" type="text"/>
+</div>
+<div class="space-y-3">
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 6" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 7" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 8" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 9" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Dim Alias 10" type="text"/>
+</div>
+</div>
+</div>
+<!-- Metric Aliases -->
+<div>
+<h4 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">bar_chart</span> Metric Aliases
+                            </h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Metric Alias 1" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Metric Alias 2" type="text"/>
+<input class="w-full text-sm px-3 py-2 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary outline-none" placeholder="Metric Alias 3" type="text"/>
+</div>
+</div>
+</div>
+</details>
+</section>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-4 pt-4">
+<button class="px-6 py-3 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" type="button">
+                    Cancel
+                </button>
+<button class="px-8 py-3 rounded-lg font-semibold bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all active:scale-95" type="submit">
+                    Create Dataset
+                </button>
+</div>
+</form>
+</main>
+<footer class="mt-20 py-8 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-5xl mx-auto px-4 flex justify-between items-center text-xs text-slate-500 dark:text-slate-500">
+<p>© 2024 Rivendell. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="hover:underline" href="#">Documentation</a>
+<a class="hover:underline" href="#">Support</a>
+<a class="hover:underline" href="#">API Reference</a>
+</div>
+</div>
+</footer>
+</body></html>
