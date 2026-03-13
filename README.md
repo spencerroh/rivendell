@@ -63,6 +63,7 @@ docker-compose up -d
 
 | 변수 | 설명 | 기본값 |
 |------|------|--------|
+| `PORT` | 서버 포트 | `3000` |
 | `DATABASE_URL` | SQLite DB 파일 경로 | `./data/rivendell.db` |
 | `KEY_SALT_SECRET` | API 키 HMAC 서명 시크릿 (32자 이상 권장) | — |
 | `EXPORT_MAX_ROWS` | 내보내기 최대 행 수 | `10000` |

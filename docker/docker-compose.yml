@@ -4,8 +4,9 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:${PORT:-3000}"
     environment:
+      - PORT=${PORT:-3000}
       - DATABASE_URL=file:/data/rivendell.db
       - KEY_SALT_SECRET=${KEY_SALT_SECRET}
       - EXPORT_MAX_ROWS=${EXPORT_MAX_ROWS:-10000}
