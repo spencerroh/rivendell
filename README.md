@@ -66,6 +66,7 @@ docker-compose up -d
 | `DATABASE_URL` | SQLite DB 파일 경로 | `./data/rivendell.db` |
 | `KEY_SALT_SECRET` | API 키 HMAC 서명 시크릿 (32자 이상 권장) | — |
 | `EXPORT_MAX_ROWS` | 내보내기 최대 행 수 | `10000` |
+| `NEXT_PUBLIC_BASE_URL` | 도움말 코드 예시에 표시될 서버 주소 | `https://your-host.com` |
 
 > ⚠️ `KEY_SALT_SECRET` 은 운영 환경에서 반드시 강력한 랜덤 값으로 설정하세요. 변경 시 기존 API 키가 모두 무효화됩니다.
 

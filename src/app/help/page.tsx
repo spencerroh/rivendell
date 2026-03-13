@@ -2,7 +2,7 @@ import { HeaderWithSession as Header } from "@/components/layout/HeaderWithSessi
 import { HelpCodeBlock } from "@/components/help/HelpCodeBlock";
 import { Separator } from "@/components/ui/separator";
 
-const BASE = "https://your-host.com";
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ?? "https://your-host.com";
 const DATASET_ID = "ds_xxxxxxxxxxxxxxxxxxxxxx";
 const INGEST_KEY = "ing_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 const ADMIN_KEY = "adm_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
