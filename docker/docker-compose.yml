@@ -1,0 +1,17 @@
+services:
+  rivendell:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:/data/rivendell.db
+      - KEY_SALT_SECRET=${KEY_SALT_SECRET}
+      - EXPORT_MAX_ROWS=${EXPORT_MAX_ROWS:-10000}
+    volumes:
+      - rivendell-data:/data
+    restart: unless-stopped
+
+volumes:
+  rivendell-data:
