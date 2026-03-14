@@ -70,6 +70,13 @@ export async function POST(req: NextRequest) {
           metric1: event.metric1 ?? null,
           metric2: event.metric2 ?? null,
           metric3: event.metric3 ?? null,
+          metric4: event.metric4 ?? null,
+          metric5: event.metric5 ?? null,
+          metric6: event.metric6 ?? null,
+          metric7: event.metric7 ?? null,
+          metric8: event.metric8 ?? null,
+          metric9: event.metric9 ?? null,
+          metric10: event.metric10 ?? null,
           payloadJson: event.payload ? JSON.stringify(event.payload) : null,
           createdAt: now,
         }).run();

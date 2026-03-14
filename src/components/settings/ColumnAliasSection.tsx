@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { SchemaField } from "@/types";
 
 const ALL_DIM_KEYS = ["dim1","dim2","dim3","dim4","dim5","dim6","dim7","dim8","dim9","dim10"];
-const ALL_METRIC_KEYS = ["metric1","metric2","metric3"];
+const ALL_METRIC_KEYS = ["metric1","metric2","metric3","metric4","metric5","metric6","metric7","metric8","metric9","metric10"];
 
 function buildMergedFields(existing: SchemaField[]): SchemaField[] {
   const map = new Map(existing.map((f) => [f.fieldKey, f]));
@@ -28,9 +28,14 @@ interface ColumnAliasSectionProps {
 }
 
 export function ColumnAliasSection({ datasetId, adminKey, schemaFields }: ColumnAliasSectionProps) {
+  const baseline = useRef<SchemaField[]>(buildMergedFields(schemaFields));
   const [fields, setFields] = useState<SchemaField[]>(() => buildMergedFields(schemaFields));
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  const isDirty = fields.some((f, i) =>
+    f.label !== baseline.current[i].label || f.visible !== baseline.current[i].visible
+  );
 
   function updateLabel(fieldKey: string, label: string) {
     setFields((prev) =>
@@ -66,6 +71,7 @@ export function ColumnAliasSection({ datasetId, adminKey, schemaFields }: Column
       });
 
       if (res.ok) {
+        baseline.current = fields.map((f) => ({ ...f }));
         setSaved(true);
         setTimeout(() => setSaved(false), 2000);
       }
@@ -83,10 +89,10 @@ export function ColumnAliasSection({ datasetId, adminKey, schemaFields }: Column
         <div>
           <CardTitle>컬럼 별칭</CardTitle>
           <CardDescription className="mt-1">
-            대시보드와 내보내기에서 사용할 dim1~dim10, metric1~metric3 컬럼의 이름을 설정하세요.
+            대시보드와 내보내기에서 사용할 dim1~dim10, metric1~metric10 컬럼의 이름을 설정하세요.
           </CardDescription>
         </div>
-        <Button onClick={handleSave} disabled={saving} size="sm" className="shrink-0">
+        <Button onClick={handleSave} disabled={saving || !isDirty} size="sm" className="shrink-0">
           {saved ? "저장됨!" : saving ? "저장 중..." : "변경사항 저장"}
         </Button>
       </CardHeader>

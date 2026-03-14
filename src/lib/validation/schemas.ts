@@ -10,7 +10,7 @@ export const CreateDatasetSchema = z.object({
     .optional(),
   metrics: z
     .array(z.object({ key: z.string(), label: z.string().max(50) }))
-    .max(3)
+    .max(10)
     .optional(),
 });
 
@@ -33,7 +33,7 @@ export const UpdateSchemaSchema = z.object({
         visible: z.boolean(),
       })
     )
-    .max(3)
+    .max(10)
     .optional(),
 });
 
@@ -58,6 +58,13 @@ export const IngestEventSchema = z.object({
   metric1: z.number().optional(),
   metric2: z.number().optional(),
   metric3: z.number().optional(),
+  metric4: z.number().optional(),
+  metric5: z.number().optional(),
+  metric6: z.number().optional(),
+  metric7: z.number().optional(),
+  metric8: z.number().optional(),
+  metric9: z.number().optional(),
+  metric10: z.number().optional(),
   payload: z.record(z.string(), z.unknown()).optional(),
 });
 
@@ -76,6 +83,10 @@ export const EventsQuerySchema = z.object({
   status: z.string().optional(),
   dim_col: z.enum(["dim1","dim2","dim3","dim4","dim5","dim6","dim7","dim8","dim9","dim10"]).optional(),
   dim_val: z.string().max(200).optional(),
+  metric_col: z.enum(["metric1","metric2","metric3","metric4","metric5","metric6","metric7","metric8","metric9","metric10"]).optional(),
+  metric_op: z.enum(["eq","lt","gt","lte","gte","between","null"]).optional(),
+  metric_val1: z.coerce.number().optional(),
+  metric_val2: z.coerce.number().optional(),
   page: z.coerce.number().int().min(1).default(1),
   page_size: z.coerce.number().int().min(1).max(200).default(50),
 });
@@ -84,6 +95,6 @@ export const ExportQuerySchema = EventsQuerySchema.omit({
   page: true,
   page_size: true,
 }).extend({
-  visible_only: z.coerce.boolean().default(true),
-  include_payload: z.coerce.boolean().default(false),
+  visible_only: z.string().transform((v) => v !== "false").default(true),
+  include_payload: z.string().transform((v) => v === "true").default(false),
 });

@@ -1,38 +1,13 @@
 import { NextRequest } from "next/server";
 import { db } from "@/db/client";
 import { events } from "@/db/schema";
-import { eq, and, gte, lte, like, SQL } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { extractBearerToken } from "@/lib/auth/keys";
 import { verifyAdminKey } from "@/lib/auth/verifyApiKey";
 import { EventsQuerySchema } from "@/lib/validation/schemas";
 import { ok, err } from "@/lib/utils/response";
 import { sql } from "drizzle-orm";
-import { z } from "zod";
-
-type EventsQuery = z.infer<typeof EventsQuerySchema>;
-
-const DIM_MAP = {
-  dim1: events.dim1, dim2: events.dim2, dim3: events.dim3,
-  dim4: events.dim4, dim5: events.dim5, dim6: events.dim6,
-  dim7: events.dim7, dim8: events.dim8, dim9: events.dim9,
-  dim10: events.dim10,
-} as const;
-
-function buildEventFilters(datasetId: string, q: EventsQuery) {
-  const conditions: SQL[] = [eq(events.datasetId, datasetId)];
-
-  if (q.from) conditions.push(gte(events.occurredAt, q.from));
-  if (q.to) conditions.push(lte(events.occurredAt, q.to));
-  if (q.event_name) conditions.push(eq(events.eventName, q.event_name));
-  if (q.actor_id) conditions.push(eq(events.actorId, q.actor_id));
-  if (q.source) conditions.push(eq(events.source, q.source));
-  if (q.status) conditions.push(eq(events.status, q.status));
-  if (q.dim_col && q.dim_val) {
-    conditions.push(like(DIM_MAP[q.dim_col], `%${q.dim_val}%`));
-  }
-
-  return conditions.length === 1 ? conditions[0] : and(...conditions);
-}
+import { buildEventConditions } from "@/lib/query/buildEventConditions";
 
 export async function GET(
   req: NextRequest,
@@ -53,7 +28,7 @@ export async function GET(
   }
 
   const q = parsed.data;
-  const where = buildEventFilters(datasetId, q);
+  const where = buildEventConditions(datasetId, q);
   const offset = (q.page - 1) * q.page_size;
 
   const [rows, countResult] = [

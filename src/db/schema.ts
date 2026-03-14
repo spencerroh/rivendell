@@ -53,7 +53,7 @@ export const datasetSchemaFields = sqliteTable("dataset_schema_fields", {
   datasetId: text("dataset_id")
     .notNull()
     .references(() => datasets.id),
-  fieldKey: text("field_key").notNull(), // dim1~dim10, metric1~metric3
+  fieldKey: text("field_key").notNull(), // dim1~dim10, metric1~metric10
   label: text("label").notNull(),
   fieldType: text("field_type", { enum: ["dim", "metric"] }).notNull(),
   visible: integer("visible").notNull().default(1), // 0/1
@@ -96,6 +96,13 @@ export const events = sqliteTable(
     metric1: real("metric1"),
     metric2: real("metric2"),
     metric3: real("metric3"),
+    metric4: real("metric4"),
+    metric5: real("metric5"),
+    metric6: real("metric6"),
+    metric7: real("metric7"),
+    metric8: real("metric8"),
+    metric9: real("metric9"),
+    metric10: real("metric10"),
     payloadJson: text("payload_json"),
     createdAt: text("created_at")
       .notNull()

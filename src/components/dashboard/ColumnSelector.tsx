@@ -26,8 +26,10 @@ export function ColumnSelector({
   onChange,
   settingsHref,
 }: ColumnSelectorProps) {
-  const dims = schemaFields.filter((f) => f.fieldType === "dim");
-  const metrics = schemaFields.filter((f) => f.fieldType === "metric");
+  // 설정에서 "표시"로 설정된 컬럼만 노출
+  const activeFields = schemaFields.filter((f) => f.visible === 1);
+  const dims = activeFields.filter((f) => f.fieldType === "dim");
+  const metrics = activeFields.filter((f) => f.fieldType === "metric");
 
   function toggle(fieldKey: string) {
     if (visibleColumns.includes(fieldKey)) {
@@ -37,9 +39,9 @@ export function ColumnSelector({
     }
   }
 
-  const totalCount = schemaFields.length;
+  const totalCount = activeFields.length;
   const visibleCount = visibleColumns.filter((c) =>
-    schemaFields.some((f) => f.fieldKey === c)
+    activeFields.some((f) => f.fieldKey === c)
   ).length;
 
   return (
@@ -66,6 +68,7 @@ export function ColumnSelector({
                 key={f.fieldKey}
                 checked={visibleColumns.includes(f.fieldKey)}
                 onCheckedChange={() => toggle(f.fieldKey)}
+                onSelect={(e) => e.preventDefault()}
                 className="text-sm"
               >
                 <span className="truncate">{f.label || f.fieldKey}</span>
@@ -89,6 +92,7 @@ export function ColumnSelector({
                 key={f.fieldKey}
                 checked={visibleColumns.includes(f.fieldKey)}
                 onCheckedChange={() => toggle(f.fieldKey)}
+                onSelect={(e) => e.preventDefault()}
                 className="text-sm"
               >
                 <span className="truncate">{f.label || f.fieldKey}</span>

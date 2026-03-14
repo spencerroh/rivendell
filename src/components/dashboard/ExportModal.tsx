@@ -29,7 +29,6 @@ export function ExportModal({
   currentFilters,
 }: ExportModalProps) {
   const [format, setFormat] = useState<"json" | "xlsx">("xlsx");
-  const [includePayload, setIncludePayload] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,7 +45,11 @@ export function ExportModal({
     if (currentFilters.status) params.set("status", currentFilters.status);
     if (currentFilters.dim_col) params.set("dim_col", currentFilters.dim_col);
     if (currentFilters.dim_val) params.set("dim_val", currentFilters.dim_val);
-    params.set("include_payload", String(includePayload));
+    if (currentFilters.metric_col) params.set("metric_col", currentFilters.metric_col);
+    if (currentFilters.metric_op) params.set("metric_op", currentFilters.metric_op);
+    if (currentFilters.metric_val1) params.set("metric_val1", currentFilters.metric_val1);
+    if (currentFilters.metric_val2) params.set("metric_val2", currentFilters.metric_val2);
+    params.set("include_payload", "true");
 
     try {
       const res = await fetch(
@@ -103,19 +106,6 @@ export function ExportModal({
                 </Button>
               ))}
             </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              id="includePayload"
-              checked={includePayload}
-              onChange={(e) => setIncludePayload(e.target.checked)}
-              className="h-4 w-4"
-            />
-            <Label htmlFor="includePayload" className="cursor-pointer">
-              payload_json 컬럼 포함
-            </Label>
           </div>
 
           {error && <p className="text-sm text-destructive">{error}</p>}

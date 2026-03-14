@@ -36,11 +36,21 @@ export default async function DashboardPage({ params, searchParams }: PageProps)
     redirect("/");
   }
 
-  const schemaFields = db
+  const dbSchemaFields = db
     .select()
     .from(datasetSchemaFields)
     .where(eq(datasetSchemaFields.datasetId, datasetId))
     .all() as SchemaField[];
+
+  // DB에 행이 없는 dim/metric도 기본값으로 채워 항상 전체 컬럼 표시
+  const fieldMap = new Map(dbSchemaFields.map((f) => [f.fieldKey, f]));
+  const allKeys = [
+    ...["dim1","dim2","dim3","dim4","dim5","dim6","dim7","dim8","dim9","dim10"].map((key, i) => ({ key, type: "dim" as const, i })),
+    ...["metric1","metric2","metric3","metric4","metric5","metric6","metric7","metric8","metric9","metric10"].map((key, i) => ({ key, type: "metric" as const, i })),
+  ];
+  const schemaFields: SchemaField[] = allKeys.map(({ key, type, i }) =>
+    fieldMap.get(key) ?? { id: "", datasetId, fieldKey: key, label: "", fieldType: type, visible: 1, sortOrder: i }
+  );
 
   // KPI
   const totalResult = db

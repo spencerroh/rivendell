@@ -29,7 +29,10 @@ const DIM_KEYS = [
   "dim1", "dim2", "dim3", "dim4", "dim5",
   "dim6", "dim7", "dim8", "dim9", "dim10",
 ];
-const METRIC_KEYS = ["metric1", "metric2", "metric3"];
+const METRIC_KEYS = [
+  "metric1", "metric2", "metric3", "metric4", "metric5",
+  "metric6", "metric7", "metric8", "metric9", "metric10",
+];
 
 export function AdvancedSettings({
   dims,
@@ -97,7 +100,7 @@ export function AdvancedSettings({
             <div className="space-y-3">
               <p className="text-sm font-medium">숫자 컬럼 (metric)</p>
               <p className="text-xs text-muted-foreground">
-                metric1~metric3의 표시 이름을 설정하세요. 비워두면 기본 키 이름으로 표시됩니다.
+                metric1~metric10의 표시 이름을 설정하세요. 비워두면 기본 키 이름으로 표시됩니다.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
                 {METRIC_KEYS.map((key) => (

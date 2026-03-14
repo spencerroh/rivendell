@@ -31,6 +31,13 @@ export interface EventRow {
   metric1: number | null;
   metric2: number | null;
   metric3: number | null;
+  metric4: number | null;
+  metric5: number | null;
+  metric6: number | null;
+  metric7: number | null;
+  metric8: number | null;
+  metric9: number | null;
+  metric10: number | null;
   payloadJson: string | null;
 }
 
@@ -60,4 +67,8 @@ export interface EventFilters {
   status?: string;
   dim_col?: string;
   dim_val?: string;
+  metric_col?: string;
+  metric_op?: string;
+  metric_val1?: string;
+  metric_val2?: string;
 }

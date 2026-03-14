@@ -61,9 +61,10 @@ export function DashboardClient({
     ...schemaFields.filter((f) => f.visible === 1 && f.fieldType === "metric").map((f) => f.fieldKey),
   ];
   const [visibleColumns, setVisibleColumns] = useState<string[]>(defaultColumns);
+  const [pageSize, setPageSize] = useState(50);
 
   const fetchEvents = useCallback(
-    async (f: EventFilters, page: number) => {
+    async (f: EventFilters, page: number, ps: number) => {
       setLoading(true);
       try {
         const params = new URLSearchParams();
@@ -75,7 +76,12 @@ export function DashboardClient({
         if (f.status) params.set("status", f.status);
         if (f.dim_col) params.set("dim_col", f.dim_col);
         if (f.dim_val) params.set("dim_val", f.dim_val);
+        if (f.metric_col) params.set("metric_col", f.metric_col);
+        if (f.metric_op) params.set("metric_op", f.metric_op);
+        if (f.metric_val1) params.set("metric_val1", f.metric_val1);
+        if (f.metric_val2) params.set("metric_val2", f.metric_val2);
         params.set("page", String(page));
+        params.set("page_size", String(ps));
 
         const res = await fetch(
           `/api/v1/datasets/${datasetId}/events?${params.toString()}`,
@@ -94,16 +100,21 @@ export function DashboardClient({
 
   function handleApplyFilters(f: EventFilters) {
     setFilters(f);
-    fetchEvents(f, 1);
+    fetchEvents(f, 1, pageSize);
   }
 
   function handleResetFilters() {
     setFilters({});
-    fetchEvents({}, 1);
+    fetchEvents({}, 1, pageSize);
   }
 
   function handlePageChange(page: number) {
-    fetchEvents(filters, page);
+    fetchEvents(filters, page, pageSize);
+  }
+
+  function handlePageSizeChange(ps: number) {
+    setPageSize(ps);
+    fetchEvents(filters, 1, ps);
   }
 
   function handleRowClick(event: EventRow) {
@@ -172,6 +183,7 @@ export function DashboardClient({
             schemaFields={schemaFields}
             visibleColumns={visibleColumns}
             onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
             onRowClick={handleRowClick}
           />
         </div>

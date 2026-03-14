@@ -17,8 +17,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
 import type { EventRow, SchemaField } from "@/types";
+
+const PAGE_SIZE_OPTIONS = [10, 20, 30, 40, 50, 100] as const;
 
 interface EventTableProps {
   events: EventRow[];
@@ -28,6 +37,7 @@ interface EventTableProps {
   schemaFields: SchemaField[];
   visibleColumns: string[];
   onPageChange: (page: number) => void;
+  onPageSizeChange: (pageSize: number) => void;
   onRowClick: (event: EventRow) => void;
 }
 
@@ -90,6 +100,7 @@ export function EventTable({
   schemaFields,
   visibleColumns,
   onPageChange,
+  onPageSizeChange,
   onRowClick,
 }: EventTableProps) {
   const totalPages = Math.ceil(total / pageSize);
@@ -203,11 +214,28 @@ export function EventTable({
 
       {/* Pagination */}
       <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span>
-          {total === 0
-            ? "검색 결과 없음"
-            : `${(page - 1) * pageSize + 1}–${Math.min(page * pageSize, total)} / ${total.toLocaleString()}`}
-        </span>
+        <div className="flex items-center gap-2">
+          <span>
+            {total === 0
+              ? "검색 결과 없음"
+              : `${(page - 1) * pageSize + 1}–${Math.min(page * pageSize, total)} / ${total.toLocaleString()}`}
+          </span>
+          <Select
+            value={String(pageSize)}
+            onValueChange={(v) => onPageSizeChange(Number(v))}
+          >
+            <SelectTrigger className="h-7 w-18 text-xs">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {PAGE_SIZE_OPTIONS.map((n) => (
+                <SelectItem key={n} value={String(n)} className="text-xs">
+                  {n}개
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
