@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { HeaderWithSession as Header } from '@/components/layout/HeaderWithSession';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
