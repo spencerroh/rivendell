@@ -11,19 +11,11 @@ export default function LandingPage() {
 
       {/* Hero */}
       <main className='flex-1 overflow-y-auto'>
-        <div className='flex flex-col items-center justify-center px-6 text-center'>
-          {/* Dashboard preview */}
-          <div className='mt-16 w-full max-w-5xl rounded-xl overflow-hidden border shadow-2xl'>
-            <Image
-              src='/dashboard.png'
-              alt='대시보드 미리보기'
-              width={1280}
-              height={720}
-              className='w-full h-auto'
-              priority
-            />
-          </div>
-          <h1 className='text-5xl py-12 font-bold tracking-tight text-foreground max-w-3xl'>
+        <div className='flex flex-col items-center justify-center px-6 py-24 text-center'>
+          <Badge variant='secondary' className='mb-6'>
+            사용 이벤트 로그 서비스
+          </Badge>
+          <h1 className='text-5xl font-bold tracking-tight text-foreground max-w-3xl'>
             사용 이벤트를 수집하고{' '}
             <span className='text-primary'>분석하세요</span>
           </h1>
@@ -31,17 +23,6 @@ export default function LandingPage() {
             계정 없이 시작하세요. 데이터셋을 만들고, REST API로 이벤트를
             전송하고, 데이터를 분석하세요 — API 키 한 쌍만으로 가능합니다.
           </p>
-          {/* Dashboard preview */}
-          <div className='mt-16 w-full max-w-5xl rounded-xl overflow-hidden border shadow-2xl'>
-            <Image
-              src='/dashboard.png'
-              alt='대시보드 미리보기'
-              width={1280}
-              height={720}
-              className='w-full h-auto'
-              priority
-            />
-          </div>
 
           <div className='mt-10 flex items-center gap-4'>
             <Button asChild size='lg'>
