@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { Header } from "./Header";
 
 interface HeaderWithSessionProps {
@@ -7,21 +6,7 @@ interface HeaderWithSessionProps {
 }
 
 export async function HeaderWithSession({ datasetId, adminKey }: HeaderWithSessionProps) {
-  const cookieStore = await cookies();
-  const currentDatasetId =
-    datasetId ?? cookieStore.get("rivendell_current_dataset")?.value;
-
-  // 설정 링크: adminKey prop이 없으면 쿠키에서 가져옴
-  const resolvedAdminKey =
-    adminKey ??
-    (currentDatasetId
-      ? cookieStore.get(`rivendell_key_${currentDatasetId}`)?.value
-      : undefined);
-
-  return (
-    <Header
-      datasetId={currentDatasetId}
-      adminKey={resolvedAdminKey}
-    />
-  );
+  // 명시적으로 전달된 props만 사용 — 쿠키 fallback 없음
+  // (데이터셋 대시보드/설정 페이지에서만 datasetId를 prop으로 전달)
+  return <Header datasetId={datasetId} adminKey={adminKey} />;
 }

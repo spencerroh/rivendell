@@ -1,11 +1,13 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 interface HeaderProps {
   datasetId?: string;
   adminKey?: string;
+  rightSlot?: ReactNode;
 }
 
-export function Header({ datasetId, adminKey }: HeaderProps) {
+export function Header({ datasetId, adminKey, rightSlot }: HeaderProps) {
   return (
     <header className="border-b bg-white shrink-0">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
@@ -41,6 +43,10 @@ export function Header({ datasetId, adminKey }: HeaderProps) {
           <Link href="/help" className="hover:text-foreground transition-colors">
             도움말
           </Link>
+          <Link href="/admin" className="hover:text-foreground transition-colors">
+            관리자
+          </Link>
+          {rightSlot}
         </nav>
       </div>
     </header>

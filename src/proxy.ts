@@ -1,9 +1,59 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function proxy(request: NextRequest) {
+// ─── Admin Session Verification (Web Crypto — Edge compatible) ──────────────
+
+const ADMIN_SECRET = process.env.ADMIN_SESSION_SECRET ?? "rivendell-admin-default-secret";
+
+function b64urlDecode(str: string): Uint8Array {
+  const base64 = str.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
+  const binary = atob(padded);
+  return Uint8Array.from(binary, (c) => c.charCodeAt(0));
+}
+
+async function verifyAdminToken(token: string): Promise<boolean> {
+  const parts = token.split(".");
+  if (parts.length !== 2) return false;
+  const [payloadB64, sigB64] = parts;
+  try {
+    const enc = new TextEncoder();
+    const key = await crypto.subtle.importKey(
+      "raw",
+      enc.encode(ADMIN_SECRET),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["verify"]
+    );
+    const sigBytes = b64urlDecode(sigB64).buffer as ArrayBuffer;
+    const dataBytes = enc.encode(payloadB64).buffer as ArrayBuffer;
+    const valid = await crypto.subtle.verify("HMAC", key, sigBytes, dataBytes);
+    if (!valid) return false;
+    const payloadStr = new TextDecoder().decode(b64urlDecode(payloadB64));
+    const payload = JSON.parse(payloadStr);
+    return typeof payload.exp === "number" && payload.exp > Math.floor(Date.now() / 1000);
+  } catch {
+    return false;
+  }
+}
+
+// ─── Proxy (Middleware) ─────────────────────────────────────────────────────
+
+export async function proxy(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
-  // /datasets/[datasetId] 경로에서 처리 (new 제외)
+  // ── Admin route protection ──────────────────────────────────────────────
+  if (pathname.startsWith("/admin")) {
+    // 로그인 페이지는 보호 제외
+    if (pathname === "/admin/login") return NextResponse.next();
+
+    const token = request.cookies.get("admin_session")?.value;
+    if (!token || !(await verifyAdminToken(token))) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
+    return NextResponse.next();
+  }
+
+  // ── Dataset key cookie handling ─────────────────────────────────────────
   const match = pathname.match(/^\/datasets\/([^/]+)(?:\/|$)/);
   if (match) {
     const datasetId = match[1];
@@ -47,5 +97,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/datasets/:path*"],
+  matcher: ["/datasets/:path*", "/admin", "/admin/:path*"],
 };
