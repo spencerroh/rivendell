@@ -4,6 +4,7 @@ import { datasetSchemaFields } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { extractBearerToken } from "@/lib/auth/keys";
 import { verifyAdminKey } from "@/lib/auth/verifyApiKey";
+import { isNoSecureMode } from "@/lib/auth/noSecureMode";
 import { UpdateSchemaSchema } from "@/lib/validation/schemas";
 import { ok, err } from "@/lib/utils/response";
 import { generateId } from "@/lib/utils/id";
@@ -13,11 +14,12 @@ export async function PATCH(
   { params }: { params: Promise<{ datasetId: string }> }
 ) {
   const { datasetId } = await params;
-  const rawKey = extractBearerToken(req.headers.get("authorization"));
-
-  const auth = verifyAdminKey(datasetId, rawKey);
-  if (!auth.valid) {
-    return err("INVALID_KEY", "Invalid or missing admin key", 401);
+  if (!isNoSecureMode()) {
+    const rawKey = extractBearerToken(req.headers.get("authorization"));
+    const auth = verifyAdminKey(datasetId, rawKey);
+    if (!auth.valid) {
+      return err("INVALID_KEY", "Invalid or missing admin key", 401);
+    }
   }
 
   let body: unknown;

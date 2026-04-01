@@ -6,6 +6,7 @@ import { db } from "@/db/client";
 import { datasets, datasetSchemaFields, events, apiKeys } from "@/db/schema";
 import { eq, and, isNull, gte, sql } from "drizzle-orm";
 import { verifyAdminKey } from "@/lib/auth/verifyApiKey";
+import { isNoSecureMode } from "@/lib/auth/noSecureMode";
 import type { SchemaField } from "@/types";
 
 interface PageProps {
@@ -17,18 +18,21 @@ export default async function DashboardPage({ params, searchParams }: PageProps)
   const { datasetId } = await params;
   const sp = await searchParams;
 
-  // admin_key: URL query param 또는 cookie에서
+  // admin_key: URL query param 또는 cookie에서 (비보안 모드에서는 검증 생략)
   const cookieStore = await cookies();
-  const adminKey =
-    sp.key ?? cookieStore.get(`rivendell_key_${datasetId}`)?.value ?? "";
+  let adminKey = "";
+  if (!isNoSecureMode()) {
+    adminKey =
+      sp.key ?? cookieStore.get(`rivendell_key_${datasetId}`)?.value ?? "";
 
-  if (!adminKey) {
-    redirect(`/access`);
-  }
+    if (!adminKey) {
+      redirect(`/access`);
+    }
 
-  const auth = verifyAdminKey(datasetId, adminKey);
-  if (!auth.valid) {
-    redirect(`/access`);
+    const auth = verifyAdminKey(datasetId, adminKey);
+    if (!auth.valid) {
+      redirect(`/access`);
+    }
   }
 
   const dataset = db.select().from(datasets).where(eq(datasets.id, datasetId)).get();

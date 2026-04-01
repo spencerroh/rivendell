@@ -4,6 +4,7 @@ import { apiKeys } from "@/db/schema";
 import { eq, and, isNull } from "drizzle-orm";
 import { extractBearerToken, generateKey } from "@/lib/auth/keys";
 import { verifyAdminKey } from "@/lib/auth/verifyApiKey";
+import { isNoSecureMode } from "@/lib/auth/noSecureMode";
 import { ok, err } from "@/lib/utils/response";
 import { generateId } from "@/lib/utils/id";
 import { z } from "zod";
@@ -17,11 +18,12 @@ export async function POST(
   { params }: { params: Promise<{ datasetId: string }> }
 ) {
   const { datasetId } = await params;
-  const rawKey = extractBearerToken(req.headers.get("authorization"));
-
-  const auth = verifyAdminKey(datasetId, rawKey);
-  if (!auth.valid) {
-    return err("INVALID_KEY", "Invalid or missing admin key", 401);
+  if (!isNoSecureMode()) {
+    const rawKey = extractBearerToken(req.headers.get("authorization"));
+    const auth = verifyAdminKey(datasetId, rawKey);
+    if (!auth.valid) {
+      return err("INVALID_KEY", "Invalid or missing admin key", 401);
+    }
   }
 
   let body: unknown;

@@ -4,6 +4,7 @@ import { datasets } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { extractBearerToken } from "@/lib/auth/keys";
 import { verifyAdminKey } from "@/lib/auth/verifyApiKey";
+import { isNoSecureMode } from "@/lib/auth/noSecureMode";
 import { ok, err } from "@/lib/utils/response";
 
 export async function POST(
@@ -11,11 +12,12 @@ export async function POST(
   { params }: { params: Promise<{ datasetId: string }> }
 ) {
   const { datasetId } = await params;
-  const rawKey = extractBearerToken(req.headers.get("authorization"));
-
-  const auth = verifyAdminKey(datasetId, rawKey);
-  if (!auth.valid) {
-    return err("INVALID_KEY", "Invalid or missing admin key", 401);
+  if (!isNoSecureMode()) {
+    const rawKey = extractBearerToken(req.headers.get("authorization"));
+    const auth = verifyAdminKey(datasetId, rawKey);
+    if (!auth.valid) {
+      return err("INVALID_KEY", "Invalid or missing admin key", 401);
+    }
   }
 
   const dataset = db.select().from(datasets).where(eq(datasets.id, datasetId)).get();
